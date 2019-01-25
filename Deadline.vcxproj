@@ -141,6 +141,8 @@
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="TextInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BasicSettings.cpp" />
@@ -151,6 +153,8 @@
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextInfo.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
