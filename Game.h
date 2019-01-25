@@ -26,4 +26,5 @@ public:
 	virtual ~Game();
 
 	virtual Game& play();
+
 };
