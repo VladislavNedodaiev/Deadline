@@ -6,6 +6,10 @@ class Game
 {
 protected:
 
+	GameHelper _gamehelper;
+	GameStateManager _gsm;
+	float dt;
+
 	virtual Game& loadContent();
 	virtual Game& unloadContent();
 
@@ -15,8 +19,6 @@ protected:
 
 	virtual Game& update();
 	virtual Game& render();
-
-	float dt;
 
 public:
 
