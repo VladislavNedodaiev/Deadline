@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game()
+Game::Game() : _gsm(_gamehelper)
 {
 
 	this->loadContent().initialize();
