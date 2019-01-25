@@ -2,6 +2,8 @@
 
 #include "GameStateManager.h"
 
+#include "Menu.h"
+
 class Game
 {
 protected:

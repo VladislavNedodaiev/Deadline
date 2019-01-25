@@ -31,6 +31,8 @@ Game& Game::unloadContent()
 Game& Game::initialize()
 {
 
+	_gsm.pushState(new Menu(this->_gamehelper));
+
 	return *this;
 
 } // initialize (comes after loadContent)
@@ -73,9 +75,13 @@ Game& Game::update()
 Game& Game::render()
 {
 
-	this->_gamehelper.renderWindow.clear();
-	this->_gsm.render();
-	this->_gamehelper.renderWindow.display();
+	if (this->_gamehelper.renderWindow.isOpen()) {
+
+		this->_gamehelper.renderWindow.clear();
+		this->_gsm.render();
+		this->_gamehelper.renderWindow.display();
+
+	} // if
 
 	return *this;
 
