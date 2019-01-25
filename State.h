@@ -1,5 +1,7 @@
 #pragma once
 
+#include "GameHelper.h"
+
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
 
