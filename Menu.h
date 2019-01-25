@@ -4,6 +4,11 @@
 
 class Menu : public State
 {
+
+private:
+
+
+
 protected:
 
 	virtual Menu& initialize();

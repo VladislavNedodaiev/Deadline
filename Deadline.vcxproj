@@ -137,6 +137,7 @@
     <ClInclude Include="Deadline.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameHelper.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="State.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="Deadline.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameHelper.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="State.cpp" />
