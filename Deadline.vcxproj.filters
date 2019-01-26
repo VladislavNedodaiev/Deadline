@@ -55,6 +55,12 @@
     <Filter Include="Header Files\GameObject\Objects\GUI\Text">
       <UniqueIdentifier>{c32b78fa-22c4-428e-8b23-0583e055664f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObject\Behaviours">
+      <UniqueIdentifier>{872fc27f-b445-43a3-be70-526634c79c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObject\Behaviours">
+      <UniqueIdentifier>{e8319e05-3343-4716-9bd4-0bd4187774c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Deadline.h">
@@ -87,6 +93,21 @@
     <ClInclude Include="TextInfo.h">
       <Filter>Header Files\GameObject\Objects\GUI\Text</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteSheet.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviour.h">
+      <Filter>Header Files\GameObject\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\GameObject\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\GameObject\Objects\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CounterBar.h">
+      <Filter>Header Files\GameObject\Objects\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Deadline.cpp">
@@ -118,6 +139,21 @@
     </ClCompile>
     <ClCompile Include="TextInfo.cpp">
       <Filter>Source Files\GameObject\Objects\GUI\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteSheet.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Behaviour.cpp">
+      <Filter>Source Files\GameObject\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\GameObject\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\GameObject\Objects\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CounterBar.cpp">
+      <Filter>Source Files\GameObject\Objects\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
