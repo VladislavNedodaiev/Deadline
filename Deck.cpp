@@ -21,7 +21,66 @@ Deck::~Deck()
 Deck& Deck::loadFromFile(std::string path)
 {
 
-	// TODO load from file
+	std::wifstream wifs(path);
+
+	if (!wifs.is_open())
+		return *this;
+
+	std::wstring buf = L"";
+
+	int count = 0;
+	std::getline(wifs, buf);
+	count = std::stoi(buf.substr(3));
+
+	for (int i = 0; i < count && !wifs.eof(); i++)
+	{
+
+		Card *card = new Card;
+		
+		// card text
+		std::getline(wifs, buf);
+		card->cardtext = buf;
+
+		// choices count
+		int choice_count = 0;
+		std::getline(wifs, buf);
+		choice_count = std::stoi(buf);
+		for (int k = 0; k < choice_count && !wifs.eof(); k++)
+		{
+
+			Choice *choice = new Choice;
+			std::getline(wifs, buf);
+			choice->text = buf;
+
+			// health
+			std::getline(wifs, buf);
+			choice->stats.health = stoi(buf);
+
+			// joy
+			std::getline(wifs, buf);
+			choice->stats.joy = stoi(buf);
+
+			// money
+			std::getline(wifs, buf);
+			choice->stats.money = stoi(buf);
+
+			// project
+			std::getline(wifs, buf);
+			choice->stats.project = stoi(buf);
+
+			// next card
+			std::getline(wifs, buf);
+			choice->nextCard = stoi(buf);
+
+			card->choices.push_back(choice);
+
+		} // for
+
+		this->_cards.push_back(card);
+
+	} // for
+
+	return *this;
 
 } // load from file
 
@@ -32,6 +91,8 @@ Deck& Deck::clear()
 		delete this->_cards[i];
 
 	this->_cards.clear();
+
+	return *this;
 
 } // clear deck
 
@@ -106,6 +167,12 @@ Card* Deck::getRandomCard()
 
 	} // for
 
-	return rndcards[std::rand() % rndcards.size()];
+	Card *card = rndcards[std::rand() % rndcards.size()];
+
+	if (lastsize > this->DEFAULT_MEMORY_LAST)
+		this->_last.pop_back();
+	this->_last.insert(this->_last.begin(), card);
+
+	return card;
 
 } // getting random card

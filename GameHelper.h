@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BasicSettings.h"
+#include "Deck.h"
 
 class GameHelper
 {

@@ -44,6 +44,8 @@ Menu& Menu::initialize()
 Menu& Menu::loadContent()
 {
 
+	deck.loadFromFile("Data/deck.txt");
+
 	this->_backgroundSheet.load("Data/background_sheet.jpg");
 	this->_buttonSheet.load("Data/button_sheet.png");
 

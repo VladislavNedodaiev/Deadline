@@ -1,7 +1,7 @@
 #include "Choice.h"
 
-const int Choice::RANDOM_NEXT_CARD = -2;
-const int Choice::NO_NEXT_CARD = -1;
+const int Choice::RANDOM_NEXT_CARD;
+const int Choice::NO_NEXT_CARD;
 
 Choice::Choice()
 {
