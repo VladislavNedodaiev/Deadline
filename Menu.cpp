@@ -29,13 +29,13 @@ Menu& Menu::initialize()
 	this->_playButton.text.setTextInfo(textinfo);
 	this->_playButton.text = L"Play game";
 	this->_playButton.setFillColor(sf::Color::White);
-	this->_playButton.setPosition(sf::Vector2f(550 / 2 - this->_playButton.getSize().x / 2, this->_gameHelper->settings.WINDOW_SIZEY / 5));
+	this->_playButton.setPosition(sf::Vector2f(this->_gameHelper->settings.WINDOW_SIZEX / 2 - this->_playButton.getSize().x / 2, this->_gameHelper->settings.WINDOW_SIZEY / 5));
 
 	this->_exitButton.setAnimation(this->_buttonSheet.getSheet()).setSize(sf::Vector2f(500, 150));
 	this->_exitButton.text.setTextInfo(textinfo);
 	this->_exitButton.text = L"Exit game";
 	this->_exitButton.setFillColor(sf::Color::White);
-	this->_exitButton.setPosition(sf::Vector2f(550 / 2 - this->_playButton.getSize().x / 2, this->_gameHelper->settings.WINDOW_SIZEY / 5 * 2));
+	this->_exitButton.setPosition(sf::Vector2f(this->_gameHelper->settings.WINDOW_SIZEX / 2 - this->_exitButton.getSize().x / 2, this->_gameHelper->settings.WINDOW_SIZEY / 5 * 2));
 
 	return *this;
 

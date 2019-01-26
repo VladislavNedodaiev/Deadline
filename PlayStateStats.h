@@ -20,6 +20,7 @@ struct PlayStateStats
 	int joy;
 	int money;
 	int project;
+	int day;
 
 	PlayStateStats();
 	PlayStateStats(PlayStateStats &pss);
@@ -33,7 +34,8 @@ struct PlayStateStats
 	PlayStateStats& update(int health,
 						   int joy,
 						   int money,
-						   int project);
+						   int project,
+						   int day);
 	PlayStateStats& update(PlayStateStats &pss);
 
 	bool isAlive();

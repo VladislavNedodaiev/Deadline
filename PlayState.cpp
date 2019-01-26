@@ -19,14 +19,15 @@ PlayState& PlayState::initialize()
 
 	this->_backgroundObject.setAnimation(this->_backgroundSheet.getSheet()).setSize(sf::Vector2f(1920, 1080));
 
-	this->_cardObject = new CardObject(this->_panelSheet.getSheet(),
-									   this->_buttonSheet.getSheet());
-	this->_cardObject->setCard(this->_deck.getRandomCard());
-
 	this->_textinfo.font = &this->_gameHelper->font;
 	this->_textinfo.characterSize = 32;
 	this->_textinfo.horizontalAlign = this->_textinfo.Middle;
 	this->_textinfo.verticalAlign = this->_textinfo.Center;
+
+	this->_cardObject = new CardObject(this->_panelSheet.getSheet(),
+									   this->_buttonSheet.getSheet());
+	this->_cardObject->textinfo = this->_textinfo;
+	this->_cardObject->setCard(this->_deck.getRandomCard());
 
 	this->_stats.health = 75;
 	this->_stats.joy = 75;
@@ -73,7 +74,7 @@ State& PlayState::input()
 			Card *card = this->_cardObject->getCard();
 			if (card != nullptr)
 			{
-
+				inp--;
 				if (card->choices.size() > inp)
 				{
 					this->_stats += card->choices[inp]->stats;
@@ -93,6 +94,13 @@ State& PlayState::input()
 							this->_cardObject->setCard(this->_deck.getCard(card->choices[inp]->nextCard));
 
 					} // else if
+					else
+					{
+
+						this->_stats.update();
+						this->_cardObject->setCard(this->_deck.getRandomCard());
+
+					} // else
 
 				} // if
 

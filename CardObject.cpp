@@ -52,6 +52,8 @@ CardObject& CardObject::setCard(Card *card)
 							BasicSettings::WINDOW_SIZEY / 2 - button->getGlobalBounds().height / 2);
 		button->text.setTextInfo(this->textinfo);
 
+		this->buttons.push_back(button);
+
 	} // for
 
 	this->eventText = card->cardtext;
