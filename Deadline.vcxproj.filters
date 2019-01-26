@@ -61,6 +61,18 @@
     <Filter Include="Header Files\GameObject\Behaviours">
       <UniqueIdentifier>{e8319e05-3343-4716-9bd4-0bd4187774c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObject\Objects\PlayState">
+      <UniqueIdentifier>{7ef7e797-e6d3-46fc-88a7-c3211af56017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObject\Objects\PlayState">
+      <UniqueIdentifier>{ec8e1c49-ddff-475d-ac19-522aa1c6e8ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Cards">
+      <UniqueIdentifier>{1dca60b2-1be1-4ddd-a530-fc6231a8bab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Cards">
+      <UniqueIdentifier>{5c6f7860-35d1-40cd-9543-519a720a1478}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Deadline.h">
@@ -108,6 +120,24 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files\GameObject\Objects\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayEvent.h">
+      <Filter>Header Files\GameObject\Objects\PlayState</Filter>
+    </ClInclude>
+    <ClInclude Include="Deck.h">
+      <Filter>Header Files\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Header Files\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayStateStats.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Choice.h">
+      <Filter>Header Files\Cards</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Deadline.cpp">
@@ -154,6 +184,24 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\GameObject\Objects\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayEvent.cpp">
+      <Filter>Source Files\GameObject\Objects\PlayState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayStateStats.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Deck.cpp">
+      <Filter>Source Files\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>Source Files\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="Choice.cpp">
+      <Filter>Source Files\Cards</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
