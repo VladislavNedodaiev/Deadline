@@ -102,10 +102,10 @@
     <ClInclude Include="Animation.h">
       <Filter>Header Files\GameObject\Behaviours</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="CounterBar.h">
       <Filter>Header Files\GameObject\Objects\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="CounterBar.h">
+    <ClInclude Include="Button.h">
       <Filter>Header Files\GameObject\Objects\GUI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -149,10 +149,10 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\GameObject\Behaviours</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="CounterBar.cpp">
       <Filter>Source Files\GameObject\Objects\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="CounterBar.cpp">
+    <ClCompile Include="Button.cpp">
       <Filter>Source Files\GameObject\Objects\GUI</Filter>
     </ClCompile>
   </ItemGroup>

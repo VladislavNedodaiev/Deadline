@@ -16,16 +16,7 @@ GameObject::GameObject() : RectangleShape()
 GameObject::GameObject(sf::Image &imageSheet) : RectangleShape(sf::Vector2f(imageSheet.getSize()))
 {
 
-	_texture.create(imageSheet.getSize().x, imageSheet.getSize().y);
-	this->setTexture(&_texture);
-
-	_currentAnimation = new Animation(sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(imageSheet.getSize())),
-		1,
-		0,
-		imageSheet,
-		_texture);
-
-	_currentAnimation->updateTexture();
+	this->setAnimation(imageSheet);
 
 	isVisible = true;
 	isMovable = true;
@@ -36,15 +27,7 @@ GameObject::GameObject(sf::Image &imageSheet, float fps, sf::IntRect firstFrame)
 	RectangleShape(sf::Vector2f(firstFrame.width, firstFrame.height))
 {
 
-	_texture.create(firstFrame.width, firstFrame.height);
-	this->setTexture(&_texture);
-
-	_currentAnimation = new Animation(firstFrame,
-		fps,
-		imageSheet,
-		_texture);
-
-	_currentAnimation->updateTexture();
+	this->setAnimation(imageSheet, fps, firstFrame);
 
 	isVisible = true;
 	isMovable = true;
@@ -55,16 +38,7 @@ GameObject::GameObject(sf::Image &imageSheet, int frames, float fps, sf::IntRect
 	RectangleShape(sf::Vector2f(firstFrame.width, firstFrame.height))
 {
 
-	_texture.create(firstFrame.width, firstFrame.height);
-	this->setTexture(&_texture);
-
-	_currentAnimation = new Animation(firstFrame,
-		frames,
-		fps,
-		imageSheet,
-		_texture);
-
-	_currentAnimation->updateTexture();
+	this->setAnimation(imageSheet, frames, fps, firstFrame);
 
 	isVisible = true;
 	isMovable = true;
@@ -79,12 +53,63 @@ GameObject::~GameObject()
 
 } // destructor
 
-GameObject& GameObject::setAnimation(int animation)
+GameObject& GameObject::setAnimation(sf::Image &imageSheet)
 {
 
-	return *this;
+	_texture.create(imageSheet.getSize().x, imageSheet.getSize().y);
+	this->setTexture(&_texture);
 
-} // set animation by number (doesn't work with GameObject, but is implemented in children)
+	_currentAnimation = new Animation(sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(imageSheet.getSize())),
+		1,
+		0,
+		imageSheet,
+		_texture);
+
+	_currentAnimation->updateTexture();
+
+} // set animation
+
+GameObject& GameObject::setAnimation(sf::Image &imageSheet, float fps, sf::IntRect firstFrame)
+{
+
+	_texture.create(firstFrame.width, firstFrame.height);
+	this->setTexture(&_texture);
+
+	_currentAnimation = new Animation(firstFrame,
+		fps,
+		imageSheet,
+		_texture);
+
+	_currentAnimation->updateTexture();
+
+} // set animation
+
+GameObject& GameObject::setAnimation(sf::Image &imageSheet, int frames, float fps, sf::IntRect firstFrame)
+{
+
+	_texture.create(firstFrame.width, firstFrame.height);
+	this->setTexture(&_texture);
+
+	_currentAnimation = new Animation(firstFrame,
+		frames,
+		fps,
+		imageSheet,
+		_texture);
+
+	_currentAnimation->updateTexture();
+
+} // set animation
+
+GameObject& GameObject::unsetAnimation()
+{
+
+	if (_currentAnimation != nullptr)
+		delete _currentAnimation;
+
+	_texture.create(this->getSize().x, this->getSize().y);
+	this->setTexture(&_texture);
+
+} // unset animation
 
 GameObject& GameObject::setFrame(int frame)
 {
@@ -95,13 +120,6 @@ GameObject& GameObject::setFrame(int frame)
 	return *this;
 
 } // setting the frame for animation
-
-Animation* GameObject::getAnimation()
-{
-
-	return _currentAnimation;
-
-} // return current animation
 
 bool GameObject::pointIsOver(sf::Vector2i &point) const
 {

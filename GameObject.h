@@ -28,9 +28,13 @@ public:
 	GameObject(sf::Image &imageSheet, int frames, float fps, sf::IntRect firstFrame);
 	virtual ~GameObject();
 
-	virtual GameObject& setAnimation(int animation);
+	virtual GameObject& setAnimation(sf::Image &imageSheet);
+	virtual GameObject& setAnimation(sf::Image &imageSheet, float fps, sf::IntRect firstFrame);
+	virtual GameObject& setAnimation(sf::Image &imageSheet, int frames, float fps, sf::IntRect firstFrame);
+
+	virtual GameObject& unsetAnimation();
+
 	virtual GameObject& setFrame(int frame);
-	virtual Animation* getAnimation();
 
 	virtual bool pointIsOver(sf::Vector2i &point) const;
 	virtual bool isPressed(sf::Event &event, sf::Vector2i &point) const;

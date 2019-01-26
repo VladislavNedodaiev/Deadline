@@ -2,12 +2,20 @@
 
 #include "State.h"
 
+#include "CounterBar.h"
+#include "Text.h"
+
 class Menu : public State
 {
 
 private:
 
-
+	SpriteSheet _backgroundSheet;
+	SpriteSheet _buttonSheet;
+	
+	GameObject *_backgroundObject;
+	GameObject *_playButton;
+	GameObject *_exitButton;
 
 protected:
 
