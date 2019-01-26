@@ -67,6 +67,8 @@ GameObject& GameObject::setAnimation(sf::Image &imageSheet)
 
 	_currentAnimation->updateTexture();
 
+	return *this;
+
 } // set animation
 
 GameObject& GameObject::setAnimation(sf::Image &imageSheet, float fps, sf::IntRect firstFrame)
@@ -81,6 +83,8 @@ GameObject& GameObject::setAnimation(sf::Image &imageSheet, float fps, sf::IntRe
 		_texture);
 
 	_currentAnimation->updateTexture();
+
+	return *this;
 
 } // set animation
 
@@ -98,6 +102,8 @@ GameObject& GameObject::setAnimation(sf::Image &imageSheet, int frames, float fp
 
 	_currentAnimation->updateTexture();
 
+	return *this;
+
 } // set animation
 
 GameObject& GameObject::unsetAnimation()
@@ -108,6 +114,8 @@ GameObject& GameObject::unsetAnimation()
 
 	_texture.create(this->getSize().x, this->getSize().y);
 	this->setTexture(&_texture);
+
+	return *this;
 
 } // unset animation
 

@@ -38,6 +38,8 @@ Button& Button::setAnimation(sf::Image &imageSheet)
 	GameObject::setAnimation(imageSheet);
 	this->_textcenter();
 
+	return *this;
+
 } // set animation
 
 Button& Button::setAnimation(sf::Image &imageSheet, float fps, sf::IntRect firstFrame)
@@ -46,6 +48,8 @@ Button& Button::setAnimation(sf::Image &imageSheet, float fps, sf::IntRect first
 	GameObject::setAnimation(imageSheet, fps, firstFrame);
 	this->_textcenter();
 
+	return *this;
+
 } // set animation
 
 Button& Button::setAnimation(sf::Image &imageSheet, int frames, float fps, sf::IntRect firstFrame)
@@ -53,6 +57,8 @@ Button& Button::setAnimation(sf::Image &imageSheet, int frames, float fps, sf::I
 
 	GameObject::setAnimation(imageSheet, frames, fps, firstFrame);
 	this->_textcenter();
+
+	return *this;
 
 } // set animation
 
@@ -127,5 +133,7 @@ Button& Button::_textcenter()
 
 	this->text.setPosition(this->getPosition().x + this->getSize().x / 2,
 		this->getPosition().y + this->getSize().y / 2);
+
+	return *this;
 
 } // text to center

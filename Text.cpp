@@ -3,103 +3,104 @@
 Text::Text()
 {
 
-	_position = sf::Vector2f(0, 0);
-	_size = sf::Vector2f(0, 0);
+	this->_position = sf::Vector2f(0, 0);
+	this->_size = sf::Vector2f(0, 0);
 
-} // constructor
+} // Text::Text()
 
 Text::~Text()
 {
 
-	_strings.clear();
+	this->_strings.clear();
 
-} // destructor
+} // Text::~Text()
 
 Text& Text::setPosition(const sf::Vector2f &position)
 {
 
 	this->_position = position;
-	_box.setPosition(sf::Vector2f(sf::Vector2i(position)));
+	this->_box.setPosition(sf::Vector2f(sf::Vector2i(position)));
 
-	if (_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Middle)
-		_box.move((int)(-_size.x / 2), 0);
-	else if (_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Right)
-		_box.move((int)(-_size.x), 0);
-	if (_textinfo.verticalAlign == TextInfo::eVerticalAlign::Center)
-		_box.move(0, (int)(-_size.y / 2));
-	else if (_textinfo.verticalAlign == TextInfo::eVerticalAlign::Bottom)
-		_box.move(0, (int)(-_size.y));
+	if (this->_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Middle)
+		this->_box.move((int)(-this->_size.x / 2), 0);
+	else if (this->_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Right)
+		this->_box.move((int)(-this->_size.x), 0);
+
+	if (this->_textinfo.verticalAlign == TextInfo::eVerticalAlign::Center)
+		this->_box.move(0, (int)(-this->_size.y / 2));
+	else if (this->_textinfo.verticalAlign == TextInfo::eVerticalAlign::Bottom)
+		this->_box.move(0, (int)(-this->_size.y));
 
 	return *this;
 
-} // setting _position
+} // Text& Text::setPosition(const sf::Vector2f &position)
 
 Text& Text::setPosition(float x, float y)
 {
 
 	return setPosition(sf::Vector2f(x, y));
 
-} // setting _position
+} // Text& Text::setPosition(float x, float y)
 
 Text& Text::move(const sf::Vector2f &offset)
 {
 
-	return setPosition(_position + offset);
+	return setPosition(this->_position + offset);
 
-} // moving
+} // Text& Text::move(const sf::Vector2f &offset)
 
 Text& Text::move(float offsetX, float offsetY)
 {
 
 	return move(sf::Vector2f(offsetX, offsetY));
 
-} // moving
+} // Text& Text::move(float offsetX, float offsetY)
 
 Text& Text::setTextInfo(TextInfo &textinfo)
 {
 
-	if (_textinfo.font == nullptr && textinfo.font == nullptr)
+	if (this->_textinfo.font == nullptr && textinfo.font == nullptr)
 		return *this;
-	_textinfo = textinfo;
 
-	_text.setFont(*_textinfo.font);
-	_text.setCharacterSize(_textinfo.characterSize);
-	const_cast<sf::Texture&>(_text.getFont()->getTexture(_textinfo.characterSize)).setSmooth(false);
-	_text.setFillColor(_textinfo.textColor);
+	this->_textinfo = textinfo;
+
+	this->_text.setFont(*this->_textinfo.font);
+	this->_text.setCharacterSize(this->_textinfo.characterSize);
+	const_cast<sf::Texture&>(this->_text.getFont()->getTexture(this->_textinfo.characterSize)).setSmooth(false);
+	this->_text.setFillColor(this->_textinfo.textColor);
 
 	int maxWidth = 0;
 	int height = 0;
-	int size = _strings.size();
+	int size = this->_strings.size();
 	for (int i = 0; i < size; i++)
 	{
 
-		_text.setString(_strings[i]);
-		int width = _text.getGlobalBounds().width;
+		this->_text.setString(this->_strings[i]);
+		int width = this->_text.getGlobalBounds().width;
 		if (width > maxWidth)
 			maxWidth = width;
-		height += _text.getGlobalBounds().height + _textinfo.lineSpacing;
+		height += this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing;
 
-	} // for
+	} // for (int i = 0; i < size; i++)
 
-	if (_textinfo.font != nullptr)
+	if (this->_textinfo.font != nullptr)
 	{
 
-		_size = sf::Vector2f(sf::Vector2i(maxWidth + _textinfo.margin.x * 2, height + _textinfo.margin.y * 2));
-		_box.setSize(_size);
-		createTexture();
+		this->_size = sf::Vector2f(sf::Vector2i(maxWidth + this->_textinfo.margin.x * 2, height + this->_textinfo.margin.y * 2));
+		this->_box.setSize(this->_size);
+		this->_createTexture();
 
-	} // if
+	} // if (this->_textinfo.font != nullptr)
 
 	return *this;
+} // Text& Text::setTextInfo(TextInfo &textinfo)
 
-} // setting textinfo
-
-TextInfo Text::getTextInfo()
+TextInfo& Text::getTextInfo()
 {
 
-	return _textinfo;
+	return this->_textinfo;
 
-} // getting textinfo
+} // TextInfo Text::getTextInfo()
 
 Text& Text::operator=(const sf::String &string)
 {
@@ -108,7 +109,7 @@ Text& Text::operator=(const sf::String &string)
 	sf::Time time;
 
 	cl.restart();
-	_strings.clear();
+	this->_strings.clear();
 
 	int startPos = 0;
 	int endPos = 0;
@@ -124,133 +125,143 @@ Text& Text::operator=(const sf::String &string)
 		if (string[endPos] == '\n')
 		{
 
-			_strings.push_back(string.substring(startPos, endPos - startPos));
+			this->_strings.push_back(string.substring(startPos, endPos - startPos));
 			startPos = endPos + 1;
 
-			if (_textinfo.font != nullptr)
+			if (this->_textinfo.font != nullptr)
 			{
 
-				_text.setString(_strings[_strings.size() - 1]);
-				int width = _text.getGlobalBounds().width;
+				this->_text.setString(this->_strings[this->_strings.size() - 1]);
+				int width = this->_text.getGlobalBounds().width;
 				if (width > maxWidth)
 					maxWidth = width;
-				height += _text.getGlobalBounds().height + _textinfo.lineSpacing;
+				height += this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing;
 
-			} // if
+			} // if (this->_textinfo.font != nullptr)
 
-		} // if
+		} // if (string[endPos] == '\n')
+
 		endPos++;
 
-	} // while
+	} // while (endPos < size)
 
 	if (endPos != startPos)
 	{
 
-		_strings.push_back(string.substring(startPos, endPos - startPos));
+		this->_strings.push_back(string.substring(startPos, endPos - startPos));
 
-		if (_textinfo.font != nullptr)
+		if (this->_textinfo.font != nullptr)
 		{
 
-			_text.setString(_strings[_strings.size() - 1]);
+			this->_text.setString(this->_strings[this->_strings.size() - 1]);
+
 			int width = _text.getGlobalBounds().width;
 			if (width > maxWidth)
 				maxWidth = width;
-			height += _text.getGlobalBounds().height + _textinfo.lineSpacing;
 
-		} // if
+			height += this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing;
 
-	} // if
+		} // if (this->_textinfo.font != nullptr)
+
+	} // if (endPos != startPos)
+
 	time = cl.restart();
 
-	if (_textinfo.font != nullptr)
+
+	if (this->_textinfo.font != nullptr)
 	{
 
-		_size = sf::Vector2f(sf::Vector2i(maxWidth + _textinfo.margin.x * 2, height + _textinfo.margin.y * 2));
-		_box.setSize(_size);
-		createTexture();
+		this->_size = sf::Vector2f(sf::Vector2i(maxWidth + this->_textinfo.margin.x * 2, height + this->_textinfo.margin.y * 2));
+		this->_box.setSize(this->_size);
+		this->_createTexture();
 
-	} // if
+	} // if (this->_textinfo.font != nullptr)
 
 	return *this;
 
-} // setting string
+} // Text& Text::operator=(const sf::String &string)
 
 Text& Text::render(sf::RenderTarget &target)
 {
 
-	target.draw(_box);
+	target.draw(this->_box);
 
 	return *this;
 
-} // drawing text
+} // Text& Text::render(sf::RenderTarget &target)
 
-Text& Text::createTexture()
+Text& Text::_createTexture()
 {
 
 	sf::Clock cl;
 	sf::Time time;
 	cl.restart();
 
-	if (!_strings.size() || _textinfo.font == nullptr)
+	if (!this->_strings.size() || this->_textinfo.font == nullptr)
 		return *this;
 
-	this->setPosition(_position);
+	this->setPosition(this->_position);
 
 	// made for optimizing, cause sf::RenderTexture::create(...) requires lots of time
-	sf::Vector2u rsize = _renderTexture.getSize();
-	if (rsize.x < _size.x)
+	sf::Vector2u rsize = this->_renderTexture.getSize();
+	if (rsize.x < this->_size.x)
 	{
 
-		rsize.x = _size.x;
-		if (rsize.y < _size.y)
-			rsize.y = _size.y;
-		_renderTexture.create(rsize.x, rsize.y);
+		rsize.x = this->_size.x;
 
-	} // if (rsize.x < _size.x)
-	else if (rsize.y < _size.y)
+		if (rsize.y < this->_size.y)
+			rsize.y = this->_size.y;
+
+		this->_renderTexture.create(rsize.x, rsize.y);
+
+	} // if (rsize.x < this->_size.x)
+
+	else if (rsize.y < this->_size.y)
 	{
 
-		rsize.y = _size.y;
-		if (rsize.x < _size.x)
-			rsize.x = _size.x;
-		_renderTexture.create(rsize.x, rsize.y);
+		rsize.y = this->_size.y;
 
-	} // else if (rsize.y < _size.y)
+		if (rsize.x < this->_size.x)
+			rsize.x = this->_size.x;
 
-	_renderTexture.clear(_textinfo.backgroundColor);
+		this->_renderTexture.create(rsize.x, rsize.y);
 
-	_text.setString(_strings[0]);
-	_text.setPosition(0, 0);
-	_text.move(sf::Vector2f(sf::Vector2i(_textinfo.margin)));
+	} // else if (rsize.y < this->_size.y)
+
+	this->_renderTexture.clear(this->_textinfo.backgroundColor);
+
+	this->_text.setOrigin(this->_text.getLocalBounds().left, this->_text.getLocalBounds().top);
+	this->_text.setString(this->_strings[0]);
+	this->_text.setPosition(0, 0);
+	this->_text.move(sf::Vector2f(sf::Vector2i(this->_textinfo.margin)));
 
 	// horizontal align
-	if (_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Middle)
-		_text.setPosition(sf::Vector2f(sf::Vector2i(_size.x / 2 - _text.getGlobalBounds().width / 2, _text.getPosition().y + _textinfo.margin.y)));
-	else if (_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Right)
-		_text.setPosition(sf::Vector2f(sf::Vector2i(_size.x - _textinfo.margin.x - _text.getGlobalBounds().width, _text.getPosition().y + _textinfo.margin.y)));
+	if (this->_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Middle)
+		this->_text.setPosition(sf::Vector2f(sf::Vector2i(this->_size.x / 2 - this->_text.getGlobalBounds().width / 2, this->_text.getPosition().y + this->_textinfo.margin.y)));
+	else if (this->_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Right)
+		this->_text.setPosition(sf::Vector2f(sf::Vector2i(this->_size.x - this->_textinfo.margin.x - this->_text.getGlobalBounds().width, this->_text.getPosition().y + this->_textinfo.margin.y)));
 
-	//_image.
-	_renderTexture.draw(_text);
+	this->_renderTexture.draw(this->_text);
 
-	int size = _strings.size();
+	int size = this->_strings.size();
 	for (int i = 1; i < size; i++)
 	{
 
-		_text.move(0, _text.getGlobalBounds().height + _textinfo.lineSpacing);
-		_text.setString(_strings[i]);
+		this->_text.move(0, this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing);
+		this->_text.setString(this->_strings[i]);
 
-		if (_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Middle)
-			_text.setPosition(sf::Vector2f(sf::Vector2i(_size.x / 2 - _text.getGlobalBounds().width / 2, _text.getPosition().y + _textinfo.margin.y)));
-		else if (_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Right)
-			_text.setPosition(sf::Vector2f(sf::Vector2i(_size.x - _textinfo.margin.x - _text.getGlobalBounds().width, _text.getPosition().y + _textinfo.margin.y)));
+		if (this->_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Middle)
+			this->_text.setPosition(sf::Vector2f(sf::Vector2i(this->_size.x / 2 - this->_text.getGlobalBounds().width / 2, this->_text.getPosition().y + this->_textinfo.margin.y)));
+		else if (this->_textinfo.horizontalAlign == TextInfo::eHorizontalAlign::Right)
+			this->_text.setPosition(sf::Vector2f(sf::Vector2i(this->_size.x - this->_textinfo.margin.x - this->_text.getGlobalBounds().width, this->_text.getPosition().y + this->_textinfo.margin.y)));
 
-		_renderTexture.draw(_text);
+		this->_renderTexture.draw(this->_text);
 
-	} // for
+	} // for (int i = 1; i < size; i++)
 
-	_renderTexture.display();
-	_box.setTexture(&_renderTexture.getTexture(), true);
+	this->_renderTexture.display();
+	this->_box.setTexture(&this->_renderTexture.getTexture(), true);
 
 	return *this;
 
-} // creating texture
+} // Text& Text::_createTexture()

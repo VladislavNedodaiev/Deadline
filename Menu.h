@@ -4,6 +4,7 @@
 
 #include "CounterBar.h"
 #include "Text.h"
+#include "Button.h"
 
 class Menu : public State
 {
@@ -13,9 +14,10 @@ private:
 	SpriteSheet _backgroundSheet;
 	SpriteSheet _buttonSheet;
 	
-	GameObject *_backgroundObject;
-	GameObject *_playButton;
-	GameObject *_exitButton;
+	GameObject _backgroundObject;
+
+	Button _playButton;
+	Button _exitButton;
 
 protected:
 
