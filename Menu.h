@@ -1,9 +1,6 @@
 #pragma once
 
-#include "State.h"
-
-#include "Text.h"
-#include "Button.h"
+#include "PlayState.h"
 
 class Menu : public State
 {
@@ -27,11 +24,10 @@ protected:
 
 public:
 
-
 	Menu(GameHelper &gameHelper);
 	virtual ~Menu();
 
-	virtual Menu& input();
+	virtual State& input();
 
 	virtual Menu& update(float dt);
 	virtual Menu& render();

@@ -58,7 +58,7 @@ Menu& Menu::unloadContent()
 
 } // unloading
 
-Menu& Menu::input()
+State& Menu::input()
 {
 
 	sf::Vector2i mousePos = sf::Vector2i(_gameHelper->renderWindow.mapPixelToCoords(sf::Mouse::getPosition(_gameHelper->renderWindow)));
@@ -66,7 +66,8 @@ Menu& Menu::input()
 	if (this->_playButton.isPressed(this->_gameHelper->event, mousePos))
 	{
 
-		// TODO: START GAME
+		PlayState *playstate = new PlayState(*this->_gameHelper);
+		return *playstate;
 
 	} // if play pressed
 	else if (this->_exitButton.isPressed(this->_gameHelper->event, mousePos))

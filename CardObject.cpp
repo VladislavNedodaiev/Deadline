@@ -50,10 +50,12 @@ CardObject& CardObject::setCard(Card *card)
 		button->text = card->choices[i]->text;
 		button->setPosition(BasicSettings::WINDOW_SIZEX / size * i + button->getGlobalBounds().width / 2, 
 							BasicSettings::WINDOW_SIZEY / 2 - button->getGlobalBounds().height / 2);
+		button->text.setTextInfo(this->textinfo);
 
 	} // for
 
 	this->eventText = card->cardtext;
+	this->eventText.setTextInfo(this->textinfo);
 	this->imageObject.setAnimation(card->sheet.getSheet());
 
 	return *this;

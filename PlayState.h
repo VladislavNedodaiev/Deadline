@@ -2,11 +2,9 @@
 
 #include "State.h"
 
-#include "Text.h"
-#include "Button.h"
-#include "CounterBar.h"
+#include "CardObject.h"
 
-class Menu : public State
+class PlayState : public State
 {
 
 private:
@@ -17,25 +15,29 @@ private:
 
 	GameObject _backgroundObject;
 
-	Button _playButton;
-	Button _exitButton;
+	Deck _deck;
+	TextInfo _textinfo;
+
+	CardObject *_cardObject;
+
+	PlayStateStats _stats;
 
 protected:
 
-	virtual Menu& initialize();
+	virtual PlayState& initialize();
 
-	virtual Menu& loadContent();
-	virtual Menu& unloadContent();
+	virtual PlayState& loadContent();
+	virtual PlayState& unloadContent();
 
 public:
 
 
-	Menu(GameHelper &gameHelper);
-	virtual ~Menu();
+	PlayState(GameHelper &gameHelper);
+	virtual ~PlayState();
 
-	virtual Menu& input();
+	virtual State& input();
 
-	virtual Menu& update(float dt);
-	virtual Menu& render();
+	virtual PlayState& update(float dt);
+	virtual PlayState& render();
 
 };

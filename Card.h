@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Choice.h"
+#include "SpriteSheet.h"
 
 #include <vector>
 
