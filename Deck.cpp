@@ -21,6 +21,7 @@ Deck::~Deck()
 Deck& Deck::loadFromFile(std::string path)
 {
 
+
 	std::wifstream wifs(path);
 
 	if (!wifs.is_open())
@@ -30,7 +31,7 @@ Deck& Deck::loadFromFile(std::string path)
 
 	int count = 0;
 	std::getline(wifs, buf);
-	count = std::stoi(buf.substr(3));
+	count = std::stoi(buf);
 
 	for (int i = 0; i < count && !wifs.eof(); i++)
 	{

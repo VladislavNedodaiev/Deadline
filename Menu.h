@@ -18,8 +18,6 @@ private:
 	Button _playButton;
 	Button _exitButton;
 
-	Deck deck;
-
 protected:
 
 	virtual Menu& initialize();

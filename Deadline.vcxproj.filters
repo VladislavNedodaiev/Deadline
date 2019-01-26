@@ -123,9 +123,6 @@
     <ClInclude Include="PlayState.h">
       <Filter>Header Files\State</Filter>
     </ClInclude>
-    <ClInclude Include="PlayEvent.h">
-      <Filter>Header Files\GameObject\Objects\PlayState</Filter>
-    </ClInclude>
     <ClInclude Include="Deck.h">
       <Filter>Header Files\Cards</Filter>
     </ClInclude>
@@ -137,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="Choice.h">
       <Filter>Header Files\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardObject.h">
+      <Filter>Header Files\GameObject\Objects\PlayState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -188,9 +188,6 @@
     <ClCompile Include="PlayState.cpp">
       <Filter>Source Files\State</Filter>
     </ClCompile>
-    <ClCompile Include="PlayEvent.cpp">
-      <Filter>Source Files\GameObject\Objects\PlayState</Filter>
-    </ClCompile>
     <ClCompile Include="PlayStateStats.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
@@ -202,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="Choice.cpp">
       <Filter>Source Files\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardObject.cpp">
+      <Filter>Source Files\GameObject\Objects\PlayState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

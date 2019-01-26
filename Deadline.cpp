@@ -9,6 +9,9 @@ int main()
 	Game game;
 	game.play();
 
+	Deck deck;
+	deck.loadFromFile("Data/deck.txt");
+
 	return 0;
 
 } // int main()

@@ -9,6 +9,7 @@ struct Card
 
 	std::vector <Choice*> choices;
 	sf::String cardtext;
+	SpriteSheet sheet;
 
 	Card();
 	~Card();
