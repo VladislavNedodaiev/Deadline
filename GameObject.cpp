@@ -3,7 +3,7 @@
 GameObject::GameObject() : RectangleShape()
 {
 
-	_texture.create(0, 0);
+	_texture.create(100, 100);
 	this->setTexture(&_texture);
 
 	_currentAnimation = nullptr;
@@ -169,6 +169,16 @@ GameObject& GameObject::move(float offsetX, float offsetY)
 	return *this;
 
 } // recshape move overload #2
+
+GameObject& GameObject::setSize(const sf::Vector2f &size)
+{
+
+	sf::RectangleShape::setSize(size);
+	this->setTexture(&this->_texture, true);
+
+	return *this;
+
+} // set size
 
 int GameObject::input(sf::Event &event, sf::Vector2i mousePos)
 {

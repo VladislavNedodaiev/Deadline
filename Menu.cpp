@@ -24,17 +24,18 @@ Menu& Menu::initialize()
 	textinfo.characterSize = 32;
 	textinfo.horizontalAlign = textinfo.Middle;
 	textinfo.verticalAlign = textinfo.Center;
-	textinfo.backgroundColor = sf::Color::Green;
 
 	this->_playButton.setAnimation(this->_buttonSheet.getSheet()).setSize(sf::Vector2f(400, 100));
 	this->_playButton.text.setTextInfo(textinfo);
 	this->_playButton.text = L"Play game";
 	this->_playButton.setFillColor(sf::Color::Yellow);
+	this->_playButton.setPosition(sf::Vector2f(this->_gameHelper->settings.WINDOW_SIZEX / 10, this->_gameHelper->settings.WINDOW_SIZEY / 5));
 
 	this->_exitButton.setAnimation(this->_buttonSheet.getSheet()).setSize(sf::Vector2f(400, 100));
 	this->_exitButton.text.setTextInfo(textinfo);
 	this->_exitButton.text = L"Exit game";
 	this->_exitButton.setFillColor(sf::Color::Red);
+	this->_exitButton.setPosition(sf::Vector2f(this->_gameHelper->settings.WINDOW_SIZEX / 10, this->_gameHelper->settings.WINDOW_SIZEY / 5 * 3));
 
 	return *this;
 
@@ -43,8 +44,8 @@ Menu& Menu::initialize()
 Menu& Menu::loadContent()
 {
 
-	this->_backgroundSheet.load("data/background_sheet.png");
-	this->_buttonSheet.load("data/button_sheet.png");
+	this->_backgroundSheet.load("Data/background_sheet.jpg");
+	this->_buttonSheet.load("Data/button_sheet.png");
 
 	return *this;
 

@@ -42,6 +42,8 @@ public:
 	virtual GameObject& move(const sf::Vector2f &offset);
 	virtual GameObject& move(float offsetX, float offsetY);
 
+	virtual GameObject& setSize(const sf::Vector2f &size);
+
 	virtual int input(sf::Event &event, sf::Vector2i mousePos);
 	virtual GameObject& update(float dt);
 	virtual GameObject& render(sf::RenderTarget &target);
