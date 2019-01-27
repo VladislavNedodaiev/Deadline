@@ -36,6 +36,30 @@ PlayState& PlayState::initialize()
 	this->_stats.money = 100;
 	this->_stats.project = 0;
 
+	
+	this->_textinfo.characterSize = 96;
+	this->_dayText = "DAY " + std::to_string(this->_stats.day);
+	this->_dayText.setTextInfo(this->_textinfo);
+	this->_dayText.setPosition(BasicSettings::WINDOW_SIZEX / 2.0, this->_cardObject->getGlobalBounds().top + 100);
+
+	this->_textinfo.characterSize = 64;
+	this->_textinfo.horizontalAlign = this->_textinfo.Left;
+
+	this->_healthObject.setAnimation(this->_healthSheet.getSheet()).setSize(sf::Vector2f(80, 80)).setPosition(this->_cardObject->getGlobalBounds().left, 20);
+	this->_healthText.setTextInfo(this->_textinfo).setPosition(this->_cardObject->getGlobalBounds().left + this->_healthObject.getGlobalBounds().width * 1.5, 20 + this->_healthObject.getGlobalBounds().height / 2);
+	this->_healthText = std::to_string(this->_stats.health) + "%";
+
+	this->_joyObject.setAnimation(this->_joySheet.getSheet()).setSize(sf::Vector2f(80, 80)).setPosition(this->_cardObject->getGlobalBounds().left + this->_cardObject->getGlobalBounds().width / 3.0, 20);
+	this->_joyText.setTextInfo(this->_textinfo).setPosition(this->_cardObject->getGlobalBounds().left + this->_cardObject->getGlobalBounds().width / 3.0 + this->_joyObject.getGlobalBounds().width * 1.5, 20 + this->_joyObject.getGlobalBounds().height / 2);
+	this->_joyText = std::to_string(this->_stats.joy) + "%";
+
+	this->_moneyObject.setAnimation(this->_moneySheet.getSheet()).setSize(sf::Vector2f(80, 80)).setPosition(this->_cardObject->getGlobalBounds().left + this->_cardObject->getGlobalBounds().width / 3.0 * 2.0, 20);
+	this->_moneyText.setTextInfo(this->_textinfo).setPosition(this->_cardObject->getGlobalBounds().left + this->_cardObject->getGlobalBounds().width / 3.0 * 2.0 + this->_moneyObject.getGlobalBounds().width * 1.5, 20 + this->_moneyObject.getGlobalBounds().height / 2);
+	this->_moneyText = std::to_string(this->_stats.money);
+
+	this->_textinfo.characterSize = 32;
+	this->_textinfo.horizontalAlign = this->_textinfo.Middle;
+
 	this->_projectBar.setPosition(sf::Vector2f(this->_gameHelper->settings.WINDOW_SIZEX / 2 - this->_projectBar.getSize().x / 2,
 											   this->_gameHelper->settings.WINDOW_SIZEY - this->_projectBar.getSize().y * 1.5));
 	this->_projectText.setTextInfo(this->_textinfo);
@@ -53,6 +77,10 @@ PlayState& PlayState::loadContent()
 	this->_backgroundSheet.load("Data/background_sheet.png");
 	this->_panelSheet.load("Data/panel_sheet.png");
 	this->_buttonSheet.load("Data/button_sheet.png");
+
+	this->_healthSheet.load("Data/health_sheet.png");
+	this->_joySheet.load("Data/joy_sheet.png");
+	this->_moneySheet.load("Data/money_sheet.png");
 
 	this->_deck.loadFromFile("Data/deck.dat");
 
@@ -92,6 +120,7 @@ State& PlayState::input()
 					this->_healthText = std::to_string(this->_stats.health) + "%";
 					this->_joyText = std::to_string(this->_stats.joy) + "%";
 					this->_moneyText = std::to_string(this->_stats.money);
+					this->_dayText = "DAY " + std::to_string(this->_stats.day);
 					if (!(this->_stats.isAlive()) || this->_stats.project >= this->_stats.PROJECT_WORK)
 					{
 
@@ -116,6 +145,14 @@ State& PlayState::input()
 						this->_healthText = std::to_string(this->_stats.health) + "%";
 						this->_joyText = std::to_string(this->_stats.joy) + "%";
 						this->_moneyText = std::to_string(this->_stats.money);
+						this->_dayText = "DAY " + std::to_string(this->_stats.day);
+						if (!(this->_stats.isAlive()) || this->_stats.project >= this->_stats.PROJECT_WORK)
+						{
+
+							this->toDelete = true;
+							return *this;
+
+						} // if
 						this->_cardObject->setCard(this->_deck.getRandomCard());
 
 					} // else
@@ -161,6 +198,8 @@ PlayState& PlayState::render()
 
 	this->_moneyObject.render(this->_gameHelper->renderWindow);
 	this->_moneyText.render(this->_gameHelper->renderWindow);
+
+	this->_dayText.render(this->_gameHelper->renderWindow);
 
 	return *this;
 

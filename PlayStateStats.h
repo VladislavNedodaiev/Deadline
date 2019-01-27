@@ -11,10 +11,10 @@ struct PlayStateStats
 	static const int PRG_HEALTH = -5;
 	static const int PRG_JOY = -5;
 	static const int PRG_MONEY = -5;
-	static const int PRG_PROJECT = 5;
+	static const int PRG_PROJECT = 10;
 
 	// the amount of work needed for project to be done
-	static const int PROJECT_WORK = 100;
+	static const int PROJECT_WORK = 150;
 
 	int health;
 	int joy;
@@ -37,6 +37,8 @@ struct PlayStateStats
 						   int project,
 						   int day);
 	PlayStateStats& update(PlayStateStats &pss);
+
+	PlayStateStats& checkForMax();
 
 	bool isAlive();
 

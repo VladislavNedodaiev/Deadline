@@ -52,7 +52,7 @@ CardObject& CardObject::setCard(Card *card)
 	{
 
 		Button *button = new Button(*this->_buttonSheet);
-		button->text = card->choices[i]->text;
+		button->text.setText(card->choices[i]->text, 25);
 		button->setSize(sf::Vector2f(this->getGlobalBounds().width / size - 100, 150));
 		button->setPosition(this->getGlobalBounds().left + this->getGlobalBounds().width / size * i + this->getGlobalBounds().width / size / 2.0 - button->getGlobalBounds().width / 2.0,
 							BasicSettings::WINDOW_SIZEY / 2.0 - button->getGlobalBounds().height / 2 + this->getSize().y / 4);

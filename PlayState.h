@@ -37,6 +37,8 @@ private:
 	CounterBar _projectBar;
 	Text _projectText;
 
+	Text _dayText;
+
 protected:
 
 	virtual PlayState& initialize();
