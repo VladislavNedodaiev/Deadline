@@ -37,6 +37,9 @@ Menu& Menu::initialize()
 	this->_exitButton.setFillColor(sf::Color::White);
 	this->_exitButton.setPosition(sf::Vector2f(this->_gameHelper->settings.WINDOW_SIZEX / 2 - this->_exitButton.getSize().x / 2, this->_gameHelper->settings.WINDOW_SIZEY / 5 * 2));
 
+	this->_music.setLoop(true);
+	this->_music.play();
+
 	return *this;
 
 } // initializing
@@ -47,12 +50,17 @@ Menu& Menu::loadContent()
 	this->_backgroundSheet.load("Data/background_menu_sheet.png");
 	this->_buttonSheet.load("Data/button_sheet.png");
 
+	this->_music.openFromFile("Data/menu.ogg");
+	this->_music.stop();
+	
 	return *this;
 
 } // loading
 
 Menu& Menu::unloadContent()
 {
+
+	this->_music.stop();
 
 	return *this;
 
@@ -67,6 +75,7 @@ State& Menu::input()
 	{
 
 		PlayState *playstate = new PlayState(*this->_gameHelper);
+		this->_music.stop();
 		return *playstate;
 
 	} // if play pressed
@@ -79,6 +88,9 @@ State& Menu::input()
 
 Menu& Menu::update(float dt)
 {
+
+	if (this->_music.getStatus() != this->_music.Playing)
+		this->_music.play();
 
 	this->_backgroundObject.update(dt);
 	this->_playButton.update(dt);

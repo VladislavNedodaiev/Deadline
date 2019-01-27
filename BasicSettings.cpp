@@ -3,7 +3,7 @@
 BasicSettings::BasicSettings()
 {
 
-	this->fullscreen = false;
+	this->fullscreen = true;
 
 } // Settings constructor
 

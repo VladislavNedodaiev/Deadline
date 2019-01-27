@@ -67,6 +67,9 @@ PlayState& PlayState::initialize()
 												this->_gameHelper->settings.WINDOW_SIZEY - this->_projectBar.getSize().y));
 	this->_projectText = L"Project readiness indicator";
 
+	this->_music.setLoop(true);
+	this->_music.play();
+
 	return *this;
 
 } // initializing
@@ -84,6 +87,9 @@ PlayState& PlayState::loadContent()
 
 	this->_deck.loadFromFile("Data/deck.dat");
 
+	this->_music.openFromFile("Data/game.ogg");
+	this->_music.stop();
+
 	return *this;
 
 } // loading
@@ -92,6 +98,7 @@ PlayState& PlayState::unloadContent()
 {
 
 	delete _cardObject;
+	this->_music.stop();
 
 	return *this;
 
@@ -129,25 +136,29 @@ State& PlayState::input()
 						if (this->_stats.health <= 0)
 						{
 
+							sf::String musicpath = L"Data/bad_end.ogg";
 							sf::String endText = L"YOU DIED";
-							state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255));
+							state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255), musicpath);
 
 						} // if
 						else if (this->_stats.joy <= 0)
 						{
 
+							sf::String musicpath = L"Data/bad_end.ogg";
 							sf::String endText = L"SUICIDE COMMITTED";
-							state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255));
+							state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255), musicpath);
 
 						} // else if
 						else
 						{
 
+							sf::String musicpath = L"Data/good_end.ogg";
 							sf::String endText = L"PROJECT DONE!";
-							state = new EndGame(*this->_gameHelper, endText, sf::Color(100, 200, 100, 255));
+							state = new EndGame(*this->_gameHelper, endText, sf::Color(100, 200, 100, 255), musicpath);
 
 						} // done!
 
+						this->_music.stop();
 						this->toDelete = true;
 						return *state;
 
@@ -178,25 +189,29 @@ State& PlayState::input()
 							if (this->_stats.health <= 0)
 							{
 
+								sf::String musicpath = L"Data/bad_end.ogg";
 								sf::String endText = L"YOU DIED";
-								state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255));
+								state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255), musicpath);
 
 							} // if
 							else if (this->_stats.joy <= 0)
 							{
 
+								sf::String musicpath = L"Data/bad_end.ogg";
 								sf::String endText = L"SUICIDE COMMITTED";
-								state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255));
+								state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255), musicpath);
 
 							} // else if
 							else
 							{
 
+								sf::String musicpath = L"Data/good_end.ogg";
 								sf::String endText = L"PROJECT DONE!";
-								state = new EndGame(*this->_gameHelper, endText, sf::Color(100, 200, 100, 255));
+								state = new EndGame(*this->_gameHelper, endText, sf::Color(100, 200, 100, 255), musicpath);
 
 							} // done!
 
+							this->_music.stop();
 							this->toDelete = true;
 							return *state;
 
@@ -219,6 +234,9 @@ State& PlayState::input()
 
 PlayState& PlayState::update(float dt)
 {
+
+	if (this->_music.getStatus() != this->_music.Playing)
+		this->_music.play();
 
 	this->_backgroundObject.update(dt);
 	if (this->_cardObject != nullptr)

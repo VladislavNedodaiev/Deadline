@@ -1,9 +1,9 @@
 #include "EndGame.h"
 
-EndGame::EndGame(GameHelper &gameHelper, sf::String &endText, sf::Color backgroundColor) : State(gameHelper)
+EndGame::EndGame(GameHelper &gameHelper, sf::String &endText, sf::Color backgroundColor, sf::String &music) : State(gameHelper)
 {
 
-	this->loadContent().initialize(endText, backgroundColor);
+	this->loadContent(music).initialize(endText, backgroundColor);
 
 } // constructor
 
@@ -37,6 +37,9 @@ EndGame& EndGame::initialize(sf::String &endText, sf::Color backgroundColor)
 	this->_endText.setTextInfo(textinfo);
 	this->_endText.setPosition(BasicSettings::WINDOW_SIZEX / 2, BasicSettings::WINDOW_SIZEY / 2);
 
+	this->_music.setLoop(true);
+	this->_music.play();
+
 	return *this;
 
 } // initializing
@@ -48,8 +51,20 @@ EndGame& EndGame::loadContent()
 
 } // loading
 
+EndGame& EndGame::loadContent(sf::String &music)
+{
+
+	this->_music.openFromFile(music);
+	this->_music.stop();
+
+	return *this;
+
+} // loading
+
 EndGame& EndGame::unloadContent()
 {
+
+	this->_music.stop();
 
 	return *this;
 
@@ -69,6 +84,9 @@ State& EndGame::input()
 
 EndGame& EndGame::update(float dt)
 {
+
+	if (this->_music.getStatus() != this->_music.Playing)
+		this->_music.play();
 
 	return *this;
 

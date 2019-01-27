@@ -15,6 +15,8 @@ private:
 	Button _playButton;
 	Button _exitButton;
 
+	sf::Music _music;
+
 protected:
 
 	virtual Menu& initialize();

@@ -39,6 +39,8 @@ private:
 
 	Text _dayText;
 
+	sf::Music _music;
+
 protected:
 
 	virtual PlayState& initialize();

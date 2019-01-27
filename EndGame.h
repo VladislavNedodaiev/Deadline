@@ -13,17 +13,20 @@ private:
 
 	Text _endText;
 
+	sf::Music _music;
+
 protected:
 
 	virtual EndGame& initialize();
 	virtual EndGame& initialize(sf::String &endText, sf::Color backgroundColor);
 
 	virtual EndGame& loadContent();
+	virtual EndGame& loadContent(sf::String &music);
 	virtual EndGame& unloadContent();
 
 public:
 
-	EndGame(GameHelper &gameHelper, sf::String &endText, sf::Color backgroundColor);
+	EndGame(GameHelper &gameHelper, sf::String &endText, sf::Color backgroundColor, sf::String &music);
 	virtual ~EndGame();
 
 	virtual State& input();
