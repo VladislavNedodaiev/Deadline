@@ -21,12 +21,15 @@ private:
 	CardObject *_cardObject;
 
 	SpriteSheet _healthSheet;
+	GameObject _healthObject;
 	Text _healthText;
 
 	SpriteSheet _joySheet;
+	GameObject _joyObject;
 	Text _joyText;
 
 	SpriteSheet _moneySheet;
+	GameObject _moneyObject;
 	Text _moneyText;
 
 	PlayStateStats _stats;

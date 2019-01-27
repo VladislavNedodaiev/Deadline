@@ -29,7 +29,8 @@ CardObject& CardObject::clear()
 
 	this->buttons.clear();
 
-	this->eventText = L"";
+	delete this->eventText;
+	this->eventText = nullptr;
 
 	return *this;
 
@@ -61,10 +62,11 @@ CardObject& CardObject::setCard(Card *card)
 
 	} // for
 
-	this->eventText = card->cardtext;
-	this->eventText.setPosition(BasicSettings::WINDOW_SIZEX / 2.0,
+	this->eventText = new Text;
+	this->eventText->setText(card->cardtext, 70);
+	this->eventText->setPosition(BasicSettings::WINDOW_SIZEX / 2.0,
 								BasicSettings::WINDOW_SIZEY / 2.0 - this->getSize().y / 4);
-	this->eventText.setTextInfo(this->textinfo);
+	this->eventText->setTextInfo(this->textinfo);
 	this->imageObject.setAnimation(card->sheet.getSheet());
 
 	return *this;
@@ -88,7 +90,7 @@ CardObject& CardObject::move(const sf::Vector2f &offset)
 	for (int i = 0; i < this->buttons.size(); i++)
 		this->buttons[i]->move(offset);
 
-	this->eventText.move(offset);
+	this->eventText->move(offset);
 
 	return *this;
 
@@ -175,7 +177,7 @@ CardObject& CardObject::render(sf::RenderTarget &target)
 	for (int i = 0; i < this->buttons.size(); i++)
 		this->buttons[i]->render(target);
 
-	this->eventText.render(target);
+	this->eventText->render(target);
 
 	return *this;
 

@@ -105,10 +105,6 @@ TextInfo& Text::getTextInfo()
 Text& Text::operator=(const sf::String &string)
 {
 
-	sf::Clock cl;
-	sf::Time time;
-
-	cl.restart();
 	this->_strings.clear();
 
 	int startPos = 0;
@@ -165,9 +161,6 @@ Text& Text::operator=(const sf::String &string)
 
 	} // if (endPos != startPos)
 
-	time = cl.restart();
-
-
 	if (this->_textinfo.font != nullptr)
 	{
 
@@ -180,6 +173,33 @@ Text& Text::operator=(const sf::String &string)
 	return *this;
 
 } // Text& Text::operator=(const sf::String &string)
+
+Text& Text::setText(const sf::String &string)
+{
+
+	*this = string;
+	return *this;
+
+} // set text
+
+Text& Text::setText(const sf::String &string, int charPerStroke)
+{
+
+	sf::String st = L"";
+	
+	for (int i = 0; i < string.getSize(); i++)
+	{
+
+		if (i % charPerStroke == 0 && i != 0)
+			st += '\n';
+		st += string[i];
+
+	} // for
+
+	*this = st;
+	return *this;
+
+} // set text
 
 Text& Text::render(sf::RenderTarget &target)
 {

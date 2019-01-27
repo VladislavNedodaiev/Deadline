@@ -53,6 +53,9 @@ public:
 	// setting text (= operator overload)
 	Text& operator=(const sf::String &string);
 
+	Text& setText(const sf::String &string);
+	Text& setText(const sf::String &string, int charPerStroke);
+
 	// render
 	Text& render(sf::RenderTarget &target);
 

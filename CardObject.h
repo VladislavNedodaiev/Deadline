@@ -18,7 +18,7 @@ public:
 	GameObject imageObject;
 	std::vector <Button*> buttons;
 	TextInfo textinfo;
-	Text eventText;
+	Text *eventText;
 
 	CardObject(sf::Image &panelSheet,
 			   sf::Image &buttonSheet);

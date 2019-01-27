@@ -88,8 +88,11 @@ State& PlayState::input()
 				if (card->choices.size() > inp)
 				{
 					this->_stats += card->choices[inp]->stats;
-					this->_projectBar.setRate(this->_stats.project / this->_stats.PROJECT_WORK);
-					if (!(this->_stats.isAlive()))
+					this->_projectBar.setRate((float)this->_stats.project / (float)this->_stats.PROJECT_WORK);
+					this->_healthText = std::to_string(this->_stats.health) + "%";
+					this->_joyText = std::to_string(this->_stats.joy) + "%";
+					this->_moneyText = std::to_string(this->_stats.money);
+					if (!(this->_stats.isAlive()) || this->_stats.project >= this->_stats.PROJECT_WORK)
 					{
 
 						this->toDelete = true;
@@ -110,6 +113,9 @@ State& PlayState::input()
 
 						this->_stats.update();
 						this->_projectBar.setRate((float)this->_stats.project / (float)this->_stats.PROJECT_WORK);
+						this->_healthText = std::to_string(this->_stats.health) + "%";
+						this->_joyText = std::to_string(this->_stats.joy) + "%";
+						this->_moneyText = std::to_string(this->_stats.money);
 						this->_cardObject->setCard(this->_deck.getRandomCard());
 
 					} // else
@@ -146,6 +152,15 @@ PlayState& PlayState::render()
 
 	this->_projectBar.render(this->_gameHelper->renderWindow);
 	this->_projectText.render(this->_gameHelper->renderWindow);
+
+	this->_healthObject.render(this->_gameHelper->renderWindow);
+	this->_healthText.render(this->_gameHelper->renderWindow);
+
+	this->_joyObject.render(this->_gameHelper->renderWindow);
+	this->_joyText.render(this->_gameHelper->renderWindow);
+
+	this->_moneyObject.render(this->_gameHelper->renderWindow);
+	this->_moneyText.render(this->_gameHelper->renderWindow);
 
 	return *this;
 
