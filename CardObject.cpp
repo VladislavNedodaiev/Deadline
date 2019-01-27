@@ -7,6 +7,9 @@ CardObject::CardObject(sf::Image &panelSheet,
 	this->_panelSheet = &panelSheet;
 	this->_buttonSheet = &buttonSheet;
 
+	GameObject::setPosition(BasicSettings::WINDOW_SIZEX / 2 - this->getSize().x / 2,
+							BasicSettings::WINDOW_SIZEY / 2 - this->getSize().y / 2);
+
 } // default constructor
 
 CardObject::~CardObject()
@@ -43,13 +46,15 @@ CardObject& CardObject::setCard(Card *card)
 	this->_card = card;
 
 	int size = card->choices.size();
+
 	for (int i = 0; i < size; i++)
 	{
 
 		Button *button = new Button(*this->_buttonSheet);
 		button->text = card->choices[i]->text;
-		button->setPosition(BasicSettings::WINDOW_SIZEX / size * i + button->getGlobalBounds().width / 2, 
-							BasicSettings::WINDOW_SIZEY / 2 - button->getGlobalBounds().height / 2);
+		button->setSize(sf::Vector2f(this->getGlobalBounds().width / size - 100, 150));
+		button->setPosition(this->getGlobalBounds().left + this->getGlobalBounds().width / size * i + this->getGlobalBounds().width / size / 2.0 - button->getGlobalBounds().width / 2.0,
+							BasicSettings::WINDOW_SIZEY / 2.0 - button->getGlobalBounds().height / 2 + this->getSize().y / 4);
 		button->text.setTextInfo(this->textinfo);
 
 		this->buttons.push_back(button);
@@ -57,6 +62,8 @@ CardObject& CardObject::setCard(Card *card)
 	} // for
 
 	this->eventText = card->cardtext;
+	this->eventText.setPosition(BasicSettings::WINDOW_SIZEX / 2.0,
+								BasicSettings::WINDOW_SIZEY / 2.0 - this->getSize().y / 4);
 	this->eventText.setTextInfo(this->textinfo);
 	this->imageObject.setAnimation(card->sheet.getSheet());
 

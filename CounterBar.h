@@ -8,12 +8,13 @@ protected:
 
 	sf::Vector2f _initialSize;
 	sf::VertexArray _bar;
+	sf::VertexArray _backbar;
 
 	float _rate;
 
 public:
 
-	CounterBar(sf::Vector2f size, sf::Color fillColor, float initialRate);
+	CounterBar(sf::Vector2f size, sf::Color fillColor, float initialRate, sf::Color backColor);
 	virtual ~CounterBar();
 
 	virtual CounterBar& setPosition(const sf::Vector2f &position);
@@ -33,6 +34,7 @@ public:
 	virtual float getRate();
 
 	virtual CounterBar& setFillColor(sf::Color fillColor);
+	virtual CounterBar& setBackColor(sf::Color backColor);
 
 	virtual CounterBar& render(sf::RenderTarget &target);
 

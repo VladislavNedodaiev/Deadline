@@ -1,6 +1,8 @@
 #include "CounterBar.h"
 
-CounterBar::CounterBar(sf::Vector2f size, sf::Color fillColor, float initialRate) : _bar(sf::Quads, 4)
+CounterBar::CounterBar(sf::Vector2f size, sf::Color fillColor, float initialRate, sf::Color backColor = sf::Color::Transparent) : 
+	_bar(sf::Quads, 4),
+	_backbar(sf::Quads, 4)
 {
 
 	_initialSize = size;
@@ -11,6 +13,13 @@ CounterBar::CounterBar(sf::Vector2f size, sf::Color fillColor, float initialRate
 	_bar[3].position = sf::Vector2f(0, size.y);
 	for (int i = 0; i < 4; i++)
 		_bar[i].color = fillColor;
+
+	_backbar[0].position = sf::Vector2f(0, 0);
+	_backbar[1].position = sf::Vector2f(size.x, 0);
+	_backbar[2].position = sf::Vector2f(size.x, size.y);
+	_backbar[3].position = sf::Vector2f(0, size.y);
+	for (int i = 0; i < 4; i++)
+		_backbar[i].color = backColor;
 
 	setRate(initialRate);
 
@@ -36,7 +45,12 @@ CounterBar& CounterBar::move(const sf::Vector2f &offset)
 {
 
 	for (int i = 0; i < 4; i++)
+	{
+
 		_bar[i].position += offset;
+		_backbar[i].position += offset;
+
+	} // for
 
 	return *this;
 
@@ -53,6 +67,9 @@ CounterBar& CounterBar::setSize(sf::Vector2f size)
 {
 
 	_initialSize = size;
+
+	_backbar[1].position.x = _backbar[0].position.x + _initialSize.x;
+	_backbar[2].position.x = _backbar[3].position.x + _initialSize.x;
 
 	return setRate(_rate);
 
@@ -130,9 +147,20 @@ CounterBar& CounterBar::setFillColor(sf::Color fillColor)
 
 } // setting fillcolor
 
+CounterBar& CounterBar::setBackColor(sf::Color backColor)
+{
+
+	for (int i = 0; i < _bar.getVertexCount(); i++)
+		_backbar[i].color = backColor;
+
+	return *this;
+
+} // setting fillcolor
+
 CounterBar& CounterBar::render(sf::RenderTarget &target)
 {
 
+	target.draw(_backbar);
 	target.draw(_bar);
 
 	return *this;

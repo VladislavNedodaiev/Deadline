@@ -1,6 +1,8 @@
 #include "PlayState.h"
 
-PlayState::PlayState(GameHelper &gameHelper) : State(gameHelper)
+PlayState::PlayState(GameHelper &gameHelper) :
+	State(gameHelper),
+	_projectBar(sf::Vector2f(1080, 60), sf::Color::Green, 0, sf::Color::Cyan)
 {
 
 	this->loadContent().initialize();
@@ -34,6 +36,13 @@ PlayState& PlayState::initialize()
 	this->_stats.money = 100;
 	this->_stats.project = 0;
 
+	this->_projectBar.setPosition(sf::Vector2f(this->_gameHelper->settings.WINDOW_SIZEX / 2 - this->_projectBar.getSize().x / 2,
+											   this->_gameHelper->settings.WINDOW_SIZEY - this->_projectBar.getSize().y * 1.5));
+	this->_projectText.setTextInfo(this->_textinfo);
+	this->_projectText.setPosition(sf::Vector2f(this->_gameHelper->settings.WINDOW_SIZEX / 2,
+												this->_gameHelper->settings.WINDOW_SIZEY - this->_projectBar.getSize().y));
+	this->_projectText = L"Project readiness indicator";
+
 	return *this;
 
 } // initializing
@@ -42,6 +51,7 @@ PlayState& PlayState::loadContent()
 {
 
 	this->_backgroundSheet.load("Data/background_sheet.png");
+	this->_panelSheet.load("Data/panel_sheet.png");
 	this->_buttonSheet.load("Data/button_sheet.png");
 
 	this->_deck.loadFromFile("Data/deck.dat");
@@ -78,6 +88,7 @@ State& PlayState::input()
 				if (card->choices.size() > inp)
 				{
 					this->_stats += card->choices[inp]->stats;
+					this->_projectBar.setRate(this->_stats.project / this->_stats.PROJECT_WORK);
 					if (!(this->_stats.isAlive()))
 					{
 
@@ -98,6 +109,7 @@ State& PlayState::input()
 					{
 
 						this->_stats.update();
+						this->_projectBar.setRate((float)this->_stats.project / (float)this->_stats.PROJECT_WORK);
 						this->_cardObject->setCard(this->_deck.getRandomCard());
 
 					} // else
@@ -131,6 +143,9 @@ PlayState& PlayState::render()
 	this->_backgroundObject.render(this->_gameHelper->renderWindow);
 	if (this->_cardObject != nullptr)
 		this->_cardObject->render(this->_gameHelper->renderWindow);
+
+	this->_projectBar.render(this->_gameHelper->renderWindow);
+	this->_projectText.render(this->_gameHelper->renderWindow);
 
 	return *this;
 
