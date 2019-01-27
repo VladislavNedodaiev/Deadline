@@ -42,6 +42,10 @@ Deck& Deck::loadFromFile(std::string path)
 		std::getline(wifs, buf);
 		card->cardtext = buf;
 
+		// card image
+		std::getline(wifs, buf);
+		card->sheet.load(sf::String(buf).toAnsiString());
+
 		// choices count
 		int choice_count = 0;
 		std::getline(wifs, buf);

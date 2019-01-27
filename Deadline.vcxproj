@@ -142,6 +142,7 @@
     <ClInclude Include="CounterBar.h" />
     <ClInclude Include="Deadline.h" />
     <ClInclude Include="Deck.h" />
+    <ClInclude Include="EndGame.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameHelper.h" />
     <ClInclude Include="GameObject.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="CounterBar.cpp" />
     <ClCompile Include="Deadline.cpp" />
     <ClCompile Include="Deck.cpp" />
+    <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameHelper.cpp" />
     <ClCompile Include="GameObject.cpp" />

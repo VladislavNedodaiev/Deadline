@@ -124,8 +124,32 @@ State& PlayState::input()
 					if (!(this->_stats.isAlive()) || this->_stats.project >= this->_stats.PROJECT_WORK)
 					{
 
+						State *state;
+
+						if (this->_stats.health <= 0)
+						{
+
+							sf::String endText = L"YOU DIED";
+							state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255));
+
+						} // if
+						else if (this->_stats.joy <= 0)
+						{
+
+							sf::String endText = L"SUICIDE COMMITTED";
+							state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255));
+
+						} // else if
+						else
+						{
+
+							sf::String endText = L"PROJECT DONE!";
+							state = new EndGame(*this->_gameHelper, endText, sf::Color(100, 200, 100, 255));
+
+						} // done!
+
 						this->toDelete = true;
-						return *this;
+						return *state;
 
 					} // if
 					else if (card->choices[inp]->nextCard != Choice::NO_NEXT_CARD)
@@ -149,8 +173,32 @@ State& PlayState::input()
 						if (!(this->_stats.isAlive()) || this->_stats.project >= this->_stats.PROJECT_WORK)
 						{
 
+							State *state;
+
+							if (this->_stats.health <= 0)
+							{
+
+								sf::String endText = L"YOU DIED";
+								state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255));
+
+							} // if
+							else if (this->_stats.joy <= 0)
+							{
+
+								sf::String endText = L"SUICIDE COMMITTED";
+								state = new EndGame(*this->_gameHelper, endText, sf::Color(200, 100, 100, 255));
+
+							} // else if
+							else
+							{
+
+								sf::String endText = L"PROJECT DONE!";
+								state = new EndGame(*this->_gameHelper, endText, sf::Color(100, 200, 100, 255));
+
+							} // done!
+
 							this->toDelete = true;
-							return *this;
+							return *state;
 
 						} // if
 						this->_cardObject->setCard(this->_deck.getRandomCard());

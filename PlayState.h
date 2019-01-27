@@ -1,6 +1,6 @@
 #pragma once
 
-#include "State.h"
+#include "EndGame.h"
 
 #include "CardObject.h"
 #include "CounterBar.h"

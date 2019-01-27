@@ -15,7 +15,7 @@ class CardObject : public GameObject
 
 public:
 
-	GameObject imageObject;
+	GameObject *imageObject;
 	std::vector <Button*> buttons;
 	TextInfo textinfo;
 	Text *eventText;

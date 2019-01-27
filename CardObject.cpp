@@ -31,6 +31,9 @@ CardObject& CardObject::clear()
 
 	delete this->eventText;
 	this->eventText = nullptr;
+	
+	delete this->imageObject;
+	this->imageObject = nullptr;
 
 	return *this;
 
@@ -65,9 +68,13 @@ CardObject& CardObject::setCard(Card *card)
 	this->eventText = new Text;
 	this->eventText->setText(card->cardtext, 70);
 	this->eventText->setPosition(BasicSettings::WINDOW_SIZEX / 2.0,
-								BasicSettings::WINDOW_SIZEY / 2.0 - this->getSize().y / 4);
+								BasicSettings::WINDOW_SIZEY / 2.0 + this->getSize().y / 9);
 	this->eventText->setTextInfo(this->textinfo);
-	this->imageObject.setAnimation(card->sheet.getSheet());
+
+	this->imageObject = new GameObject(card->sheet.getSheet());
+	this->imageObject->setScale(0.6, 0.6);
+	this->imageObject->setPosition(BasicSettings::WINDOW_SIZEX / 2.0 - this->imageObject->getGlobalBounds().width / 2.0,
+								  BasicSettings::WINDOW_SIZEY / 2.0 - this->getSize().y / 3);
 
 	return *this;
 
@@ -85,7 +92,7 @@ CardObject& CardObject::move(const sf::Vector2f &offset)
 
 	GameObject::move(offset);
 
-	this->imageObject.move(offset);
+	this->imageObject->move(offset);
 
 	for (int i = 0; i < this->buttons.size(); i++)
 		this->buttons[i]->move(offset);
@@ -158,7 +165,7 @@ CardObject& CardObject::update(float dt)
 
 	GameObject::update(dt);
 
-	this->imageObject.update(dt);
+	this->imageObject->update(dt);
 
 	for (int i = 0; i < this->buttons.size(); i++)
 		this->buttons[i]->update(dt);
@@ -172,7 +179,7 @@ CardObject& CardObject::render(sf::RenderTarget &target)
 
 	GameObject::render(target);
 
-	this->imageObject.render(target);
+	this->imageObject->render(target);
 	
 	for (int i = 0; i < this->buttons.size(); i++)
 		this->buttons[i]->render(target);

@@ -1,5 +1,6 @@
 31
 Work is very important, what should I work on?
+Data/question.png
 2
 Main project
 0
@@ -7,13 +8,14 @@ Main project
 0
 25
 -1
-Freelance
+One day project just for money
 0
 0
 25
 0
 -1
 Friends invited u to go for a walk. Do u wanna go?
+Data/park.png
 2
 Yup
 0
@@ -28,6 +30,7 @@ Nope
 25
 -1
 It's good day to meet with girlfriend. Would you like to invite her to date?
+Data/happy.png
 2
 Yea
 0
@@ -42,6 +45,7 @@ No
 25
 -1
 Young boys were playing soccer and their ball hit your window.
+Data/sad.png
 2
 Make their parents to compansate damage, you received
 0
@@ -56,6 +60,7 @@ Pay own money
 0
 -1
 Food has spoilt 
+Data/food.png
 2
 Buy new one
 0
@@ -70,6 +75,7 @@ Eat old food
 0
 -1
 It's rainin' and you are out of food.
+Data/food.png
 2
 Go and buy by yourself
 0
@@ -84,6 +90,7 @@ Buy with delivery
 0
 0
 It's sunny day 
+Data/happy.png
 2
 Go for a walk
 0
@@ -98,6 +105,7 @@ Stay at home
 0
 0
 Your friend programmer asked you to help him with a fun project.
+Data/purse.png
 2
 Help him
 0
@@ -112,6 +120,7 @@ Refuse to help
 0
 0
 You were working hard lately why don't you get a day off?
+Data/sad.png
 2
 Relax
 0
@@ -126,6 +135,7 @@ Still work
 0
 0
 The game, you are fan of, is out now what to do?
+Data/happy.png
 2
 Spend all your day playing it
 0
@@ -140,6 +150,7 @@ Work and dream
 0
 0
 You can't really think about work.
+Data/park.png
 2
 Go for a walk
 0
@@ -154,6 +165,7 @@ Sleep
 0
 -1
 To wake up is not always fun. You got sick.
+Data/sad.png
 2
 Buy medicines
 0
@@ -162,12 +174,13 @@ Buy medicines
 0
 -1
 Drink some tea with razberry jam
--15
+-10
 0
 0
 0
 -1
 Your neighbours are hosting noisy party.
+Data/question.png
 2
 Join
 0
@@ -182,6 +195,7 @@ Call the police
 0
 0
 Your favourite band has a concert today, you should buy ticket.
+Data/purse.png
 2
 Expensive one
 0
@@ -196,6 +210,7 @@ Cheap one
 0
 -1
 It was a cool party yesterday, so you got a hangover.
+Data/sad.png
 2
 Buy super-pills
 -5
@@ -210,6 +225,7 @@ Try to sleep
 0
 -1
 You are struggling. You don't know what to eat.
+Data/food.png
 2
 Cereal
 10
@@ -224,6 +240,7 @@ Shawarma
 0
 -1
 You recognised that your project has a severe fault, while watching some Youtube guides from "professional" programmers
+Data/sad.png
 2
 Rework big part of a project 
 0
@@ -238,6 +255,7 @@ Come up with mistakes
 0
 0
 You struggle some emotional problems
+Data/sad.png
 2
 Buy some beer
 0
@@ -252,6 +270,7 @@ Get into depression
 0
 -1
 Grandma asked you to set shelf
+Data/question.png
 2
 Help her
 15
@@ -266,6 +285,7 @@ Refuse due to a work
 0
 0
 The day started without common sentences on your phone - your internet is off
+Data/purse.png
 2
 Buy some mobile traffic
 0
@@ -280,6 +300,7 @@ Wait for internet to be repaired
 0
 -1
 Hole! Our team is playing today.
+Data/happy.png
 2
 Yes! It's our team!
 0
@@ -294,6 +315,7 @@ Oh, no! I know how they play.
 0
 -1
 You got flooded. You spent almost whole day solving the problem.
+Data/sad.png
 1
 Get upset
 0
@@ -302,6 +324,7 @@ Get upset
 0
 -1
 You were throwing the rubbish into bin, while boy accidently hit you with a bicycle.
+Data/leg.png
 1
 Bandage your leg.
 -5
@@ -310,6 +333,7 @@ Bandage your leg.
 0
 -1
 You woke up with no help from alarm clock, good day to work.
+Data/happy.png
 1
 Let's code something
 0
@@ -318,6 +342,7 @@ Let's code something
 0
 0
 You found twenty dollars, while walking on the street.
+Data/purse.png
 1
 Get it!
 0
@@ -326,6 +351,7 @@ Get it!
 0
 0
 You got idea of genious feature, that really improved it.
+Data/happy.png
 1
 Upgrade the project
 0
@@ -334,6 +360,7 @@ Upgrade the project
 25
 0
 Your pc mouse broke, it's time to buy new one.
+Data/purse.png
 1
 Go to the shop
 0
@@ -342,6 +369,7 @@ Go to the shop
 0
 0
 You have almost forgot about your rent payment, but, luckily, you remembered to do it.
+Data/purse.png
 1
 Breathe with relief
 0
@@ -350,6 +378,7 @@ Breathe with relief
 0
 0
 Your parents said, that your dog died recently.
+Data/sad.png
 1
 Heh
 0
@@ -358,6 +387,7 @@ Heh
 0
 -1
 You hit your toe with a table leg, doctor said - that you broke a bone.
+Data/leg.png
 1
 Curses, useless toe.
 -40
@@ -366,6 +396,7 @@ Curses, useless toe.
 0
 -1
 You discovered interesting TV show, that's why you haven't slept at night, so you can't work during daytime.
+Data/happy.png
 1
 Sleep whole day 
 0
