@@ -76,10 +76,10 @@ Text& Text::setTextInfo(TextInfo &textinfo)
 	{
 
 		this->_text.setString(this->_strings[i]);
-		int width = this->_text.getGlobalBounds().width;
+		int width = this->_text.getGlobalBounds().width + this->_text.getLocalBounds().left;
 		if (width > maxWidth)
 			maxWidth = width;
-		height += this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing;
+		height += this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing + this->_text.getLocalBounds().top;
 
 	} // for (int i = 0; i < size; i++)
 
@@ -93,6 +93,7 @@ Text& Text::setTextInfo(TextInfo &textinfo)
 	} // if (this->_textinfo.font != nullptr)
 
 	return *this;
+
 } // Text& Text::setTextInfo(TextInfo &textinfo)
 
 TextInfo& Text::getTextInfo()
@@ -128,10 +129,10 @@ Text& Text::operator=(const sf::String &string)
 			{
 
 				this->_text.setString(this->_strings[this->_strings.size() - 1]);
-				int width = this->_text.getGlobalBounds().width;
+				int width = this->_text.getGlobalBounds().width + this->_text.getLocalBounds().left;
 				if (width > maxWidth)
 					maxWidth = width;
-				height += this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing;
+				height += this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing + this->_text.getLocalBounds().top;
 
 			} // if (this->_textinfo.font != nullptr)
 
@@ -151,11 +152,11 @@ Text& Text::operator=(const sf::String &string)
 
 			this->_text.setString(this->_strings[this->_strings.size() - 1]);
 
-			int width = _text.getGlobalBounds().width;
+			int width = _text.getGlobalBounds().width + this->_text.getLocalBounds().left;
 			if (width > maxWidth)
 				maxWidth = width;
 
-			height += this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing;
+			height += this->_text.getGlobalBounds().height + this->_textinfo.lineSpacing + this->_text.getLocalBounds().top;
 
 		} // if (this->_textinfo.font != nullptr)
 
@@ -224,24 +225,24 @@ Text& Text::_createTexture()
 
 	// made for optimizing, cause sf::RenderTexture::create(...) requires lots of time
 	sf::Vector2u rsize = this->_renderTexture.getSize();
-	if (rsize.x < this->_size.x)
+	if (rsize.x != this->_size.x)
 	{
 
 		rsize.x = this->_size.x;
 
-		if (rsize.y < this->_size.y)
+		if (rsize.y != this->_size.y)
 			rsize.y = this->_size.y;
 
 		this->_renderTexture.create(rsize.x, rsize.y);
 
 	} // if (rsize.x < this->_size.x)
 
-	else if (rsize.y < this->_size.y)
+	else if (rsize.y != this->_size.y)
 	{
 
 		rsize.y = this->_size.y;
 
-		if (rsize.x < this->_size.x)
+		if (rsize.x != this->_size.x)
 			rsize.x = this->_size.x;
 
 		this->_renderTexture.create(rsize.x, rsize.y);
@@ -250,7 +251,6 @@ Text& Text::_createTexture()
 
 	this->_renderTexture.clear(this->_textinfo.backgroundColor);
 
-	this->_text.setOrigin(this->_text.getLocalBounds().left, this->_text.getLocalBounds().top);
 	this->_text.setString(this->_strings[0]);
 	this->_text.setPosition(0, 0);
 	this->_text.move(sf::Vector2f(sf::Vector2i(this->_textinfo.margin)));
